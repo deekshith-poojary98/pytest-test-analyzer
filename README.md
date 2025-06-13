@@ -1,6 +1,6 @@
 # pytest-test-analyzer
 
-A powerful tool for analyzing pytest test files and generating detailed reports. This tool helps you understand your test suite structure, decorator usage, and test organization.
+A powerful Python tool that analyzes pytest test files and generates comprehensive reports. Get deep insights into your test suite by analyzing test structure, decorator patterns, and test organization. Perfect for understanding and maintaining large test suites, tracking test coverage patterns, and identifying areas for test optimization.
 
 ## Features
 
