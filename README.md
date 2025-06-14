@@ -35,8 +35,8 @@ pytest-test-analyzer --path PATH [--output OUTPUT] [--format FORMAT] [--include 
 ```
 
 - `--path`: Path(s) to Python test files or directories (required)
-- `--output`: Output file path (default: test_analytics.txt)
-- `--format`: Output format - txt, html, or markdown (default: txt)
+- `--output`: Output file path
+- `--format`: Output format - txt, html, or md (default: html)
 - `--include`: Include only tests with specific decorators
 - `--exclude`: Exclude tests with specific decorators
 
@@ -97,7 +97,7 @@ pytest-test-analyzer --path PATH [--output OUTPUT] [--format FORMAT] [--include 
 
 1. **Generate a markdown report:**
    ```bash
-   pytest-test-analyzer --path ./tests --output report.md --format markdown
+   pytest-test-analyzer --path ./tests --output report.md --format md
    ```
 
 2. **Generate a text report:**

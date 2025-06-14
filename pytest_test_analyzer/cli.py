@@ -1,6 +1,15 @@
 from .analyzer import TestAnalyzer
 import argparse
 import os
+import sys
+
+def validate_paths(paths):
+    """Validate that all paths exist and are accessible."""
+    invalid_paths = []
+    for path in paths:
+        if not os.path.exists(path):
+            invalid_paths.append(path)
+    return invalid_paths
 
 def main():
     parser = argparse.ArgumentParser(
@@ -31,8 +40,8 @@ Examples:
     
     parser.add_argument(
         '--output',
-        default='test_analytics.txt',
-        help='Output file path for the analysis report (default: test_analytics.txt)'
+        default=None,
+        help='Output file path for the analysis report (default: test_analytics.{format})'
     )
     
     parser.add_argument(
@@ -49,16 +58,39 @@ Examples:
     
     parser.add_argument(
         '--format',
-        choices=['txt', 'html', 'markdown'],
-        default='txt',
-        help='Output format for the analysis report (default: txt)'
+        choices=['txt', 'html', 'md'],
+        default='html',
+        help='Output format for the analysis report (default: html)'
     )
     
     args = parser.parse_args()
     
+    # Set default output file if not provided
+    if args.output is None:
+        args.output = f'test_analytics.{args.format}'
+    
+    # Validate paths before proceeding
+    invalid_paths = validate_paths(args.path)
+    if invalid_paths:
+        print("\n❌ Error: The following path(s) do not exist:")
+        for path in invalid_paths:
+            print(f"   - {path}")
+        print("\nPlease check the path(s) and try again.")
+        sys.exit(1)
+    
     analyzer = TestAnalyzer()
     analyzer.set_decorator_filters(args.include, args.exclude)
     analyzer.analyze_path(args.path)
+    
+    # Check if any files were analyzed
+    if analyzer.stats['total_files'] == 0:
+        print("\n⚠️  Warning: No test files were found in the specified paths.")
+        print("Please check that:")
+        print("   - The paths contain Python test files")
+        print("   - Test files follow the naming convention (test_*.py or *_test.py)")
+        print("   - You have read permissions for the files")
+        sys.exit(1)
+    
     analyzer.write_to_file(args.output, args.format)
     
     # Get absolute path for better visibility

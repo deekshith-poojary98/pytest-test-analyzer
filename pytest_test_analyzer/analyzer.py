@@ -523,14 +523,14 @@ class TestAnalyzer:
                             
                             f.write("\n")
 
-    def write_to_file(self, output_file: str, format: str = 'txt'):
+    def write_to_file(self, output_file: str, format: str = 'html'):
         """Write the analysis results to a file in the specified format."""
-        if format == 'html':
-            self.write_to_html(output_file)
-        elif format == 'markdown':
-            self.write_to_markdown(output_file)
-        else:  # default to txt
+        if format.lower() == 'txt':
             self.write_to_txt(output_file)
+        elif format.lower() == 'md':
+            self.write_to_markdown(output_file)
+        else:  # default to html
+            self.write_to_html(output_file)
 
     def _generate_class_stats_rows(self):
         """Generate HTML rows for class statistics."""
