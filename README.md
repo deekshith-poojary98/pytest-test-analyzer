@@ -1,4 +1,9 @@
-# pytest-test-analyzer
+
+# Pytest Test Analyzer
+
+[![PyPI version](https://badge.fury.io/py/pytest-test-analyzer.svg)](https://badge.fury.io/py/pytest-test-analyzer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/pytest-test-analyzer.svg)](https://pypi.org/project/pytest-test-analyzer/)
 
 A powerful Python tool that analyzes pytest test files and generates comprehensive reports. Get deep insights into your test suite by analyzing test structure, decorator patterns, and test organization. Perfect for understanding and maintaining large test suites, tracking test coverage patterns, and identifying areas for test optimization.
 
